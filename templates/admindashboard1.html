@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Admin - Dashboard</title>
+	<link href="/static/dashboard/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/static/dashboard/css/font-awesome.min.css" rel="stylesheet">
+	<link href="/static/dashboard/css/datepicker3.css" rel="stylesheet">
+	<link href="/static/dashboard/css/styles.css" rel="stylesheet">
+	
+	<!--Custom Font-->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span></button>
+				<a class="navbar-brand" href="#"><span>Wheeling and Dealing </span>ADMIN</a>
+				
+			</div>
+		</div><!-- /.container-fluid -->
+	</nav>
+	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+		<div class="profile-sidebar">
+			<div class="profile-userpic">
+				<img src="/static/dashboard/images/profile.svg" class="img-responsive" alt="">
+			</div>
+			<div class="profile-usertitle">
+				<div class="profile-usertitle-name">{{request.user}}</div>
+				<div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="divider"></div>
+		<form role="search">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Search">
+			</div>
+		</form>
+		<ul class="nav menu">
+			<li class="active"><a href="{% url 'admindashboard' %}"><em class="fa fa-dashboard">&nbsp;</em> Home</a></li>
+		
+			
+		
+			
+			<li><a href="{% url 'logout' %}"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+		</ul>
+	</div><!--/.sidebar-->
+		
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="#">
+					<em class="fa fa-home"></em>
+				</a></li>
+				<li class="active">Home</li>
+			</ol>
+		</div><!--/.row-->
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Dashboard - Home </h1>
+			</div>
+		</div><!--/.row-->
+		
+		<div class="panel panel-container">
+			<div class="row">
+				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+					<div class="panel panel-teal panel-widget border-right">
+						<div class="panel panel-red panel-widget ">
+						<div class="row no-padding"><em class="fa fa-xl fa-building color-red"></em>
+							<div class="large">{{total_ngo}}</div>
+							<div class="text-muted">Total NGOs</div>
+						</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+					<div class="panel panel-teal panel-widget border-right">
+						<div class="row no-padding"><em class="fa fa-xl fa-shopping-cart color-blue"></em>
+							<div class="large">5</div>
+							<div class="text-muted">New Transaction </div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+					<div class="panel panel-blue panel-widget border-right">
+						<div class="row no-padding"><em class="fa fa-xl fa-comments color-orange"></em>
+							<div class="large">4</div>
+							<div class="text-muted">Comments</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+					<div class="panel panel-orange panel-widget border-right">
+						<div class="row no-padding"><em class="fa fa-xl fa-users color-teal"></em>
+							<div class="large">{{total_donors}}</div>
+							<div class="text-muted">Total Users</div>
+						</div>
+					</div>
+				</div>
+				
+			</div><!--/.row-->
+		</div>
+
+		<div class="row">
+	<div class="col-md-5">
+		<h5>CUSTOMERS:</h5>
+		<hr>
+		<div class="card card-body">
+			<a class="btn btn-primary  btn-sm btn-block" href="">All NGOs</a>
+			<table class="table table-sm">
+				<tr>
+				
+					<th>NGOs</th>
+					<th>Phone</th>
+					<th>City</th>
+				</tr>
+
+				{% for ngo in ngos %}
+					<tr>
+						
+						<td>{{ngo.name}}</td>
+						<td>{{ngo.phone}}</td>
+						<td>{{ngo.city}}</td>
+					</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+
+	<div class="col-md-7">
+		<h5>LAST 5 ORDERS</h5>
+		<hr>
+		<div class="card card-body">
+			<a class="btn btn-primary  btn-sm btn-block" href="">ALL Donors</a>
+			<table class="table table-sm">
+				<tr>
+					<th>Name</th>
+					<th>State</th>
+					<th>Phone</th>
+					<th>City</th>
+				</tr>
+
+				{% for donor in donors %}
+					<tr>
+						<td>{{donor.name}}</td>
+						<td>{{donor.state}}</td>
+						<td>{{donor.phone}}</td>
+						<td>{{donor.city}}</td>
+						
+
+					</tr>
+				{% endfor %}
+
+		
+			</table>
+		</div>
+	</div>
+
+</div>
+
+
+
+
+
+	</div>	<!--/.main-->
+	
+	<script src="/static/dashboard/js/jquery-1.11.1.min.js"></script>
+	<script src="/static/dashboard/js/bootstrap.min.js"></script>
+	<script src="/static/dashboard/js/chart.min.js"></script>
+	<script src="/static/dashboard/js/chart-data.js"></script>
+	<script src="/static/dashboard/js/easypiechart.js"></script>
+	<script src="/static/dashboard/js/easypiechart-data.js"></script>
+	<script src="/static/dashboard/js/bootstrap-datepicker.js"></script>
+	<script src="/static/dashboard/js/custom.js"></script>
+	<script>
+		window.onload = function () {
+	var chart1 = document.getElementById("line-chart").getContext("2d");
+	window.myLine = new Chart(chart1).Line(lineChartData, {
+	responsive: true,
+	scaleLineColor: "rgba(0,0,0,.2)",
+	scaleGridLineColor: "rgba(0,0,0,.05)",
+	scaleFontColor: "#c5c7cc"
+	});
+};
+	</script>
+		
+</body>
+</html>

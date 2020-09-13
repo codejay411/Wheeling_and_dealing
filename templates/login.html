@@ -76,6 +76,7 @@
 
 </head>
 <body>
+<a href="{% url 'home' %}" class="btn btn-danger mt-4" role="button">Home</a>
 	<div class="container h-100">
 		<div class="d-flex justify-content-center h-100">
 			<div class="user_card">
@@ -116,7 +117,8 @@
 		
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">
-						Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign Up</a>
+						Don't have an account? <a href="{% url 'registerdonor' %}" class="ml-2">Sign Up as Donor</a>
+						<a href="{% url 'registerngo' %}" class="ml-2">Sign Up as NGO</a>
 					</div>
 					 {% comment %} <div class="d-flex justify-content-center links">
 						Forgot password? <a href="{% url 'reset_password' %}" class="ml-2">Reset password</a>
